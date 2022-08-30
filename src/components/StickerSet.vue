@@ -42,7 +42,6 @@ export default {
 			this.$store.state.isOpenStickerSet = false
 		},
 		pasteYourAlbum: function () {
-			this.$store.state.teamAlbumData.length == 0 ? this.$store.state.teamAlbumData = this.$props.stickerSetData : this.$store.state.teamAlbumData
 			this.$router.push("/team-album")
 		}
 	},

@@ -71,15 +71,14 @@ export default {
 	methods: {
 		chooseDeveloperRandom: function (devCount, teams) {
 			let choosenDev = []
-			let teamIndex = Math.random()*teams.length //76
-			teamIndex = Math.floor(teamIndex)
 				do {
+					let teamIndex = Math.random()*teams.length //76
+					teamIndex = Math.floor(teamIndex)
 					let devIndex = Math.random()*10 //5
 					devIndex = Math.floor(devIndex)
 					let developer = teams[teamIndex].developers[devIndex]
 					developer["teamName"] = teams[teamIndex].teamName
 					developer["teamId"] = teams[teamIndex].teamId
-					developer["isChosen"] = true
 					choosenDev.push(developer)
 				} while (choosenDev.length < 6);
 			return choosenDev
@@ -87,6 +86,7 @@ export default {
 		getDailyStickers: function () {
 			let stickerSetDevs = this.chooseDeveloperRandom(6, this.scrumTeams)
 			this.stickerSetData = stickerSetDevs
+			this.$store.state.teamAlbumData = stickerSetDevs
 			this.isOpenStickerSetModal = true
 			this.$store.state.isOpenStickerSet = !this.$store.state.isOpenStickerSet
 			event.target.parentNode.remove()
