@@ -4,29 +4,7 @@
 			<div class="popup-container">
 				<p>Daily stickers set you have 3 sticker sets to open</p>
 				<div class="sticker-box-container">
-					<div class="sticker-box">
-						<div class="sticker-set">
-							<p>Sticker Set</p>
-						</div>
-						<button
-							@click="getDailyStickers"
-							type="button"
-							class="button">
-							OPEN
-						</button>
-					</div>
-					<div class="sticker-box">
-						<div class="sticker-set">
-							<p>Sticker Set</p>
-						</div>
-						<button
-							@click="getDailyStickers"
-							type="button"
-							class="button">
-							OPEN
-						</button>
-					</div>
-					<div class="sticker-box">
+					<div v-for="set in stickerSetCount" :key="set" class="sticker-box">
 						<div class="sticker-set">
 							<p>Sticker Set</p>
 						</div>
@@ -65,7 +43,8 @@ export default {
 			scrumTeams: scrumTeams,
 			closeIcon: closeIcon,
 			stickerSetData: [],
-			isOpenStickerSetModalsss: false
+			isOpenStickerSetModalsss: false,
+			stickerSetCount: []
 		}
 	},
 	methods: {
@@ -90,12 +69,17 @@ export default {
 			this.isOpenStickerSetModal = true
 			this.$store.state.isOpenStickerSet = !this.$store.state.isOpenStickerSet
 			event.target.parentNode.remove()
+			this.$store.state.stickerSetCount.pop()
 		},
 		closeModal: function () {
 			this.$store.state.isOpenStickerSetModal = false
 		}
 	},
 	mounted() {
+		this.stickerSetCount = this.$store.state.stickerSetCount
+		if (this.stickerSetCount.length == 0) {
+			this.$store.state.isOpenStickerSetModal = false
+		}
 	}
 }
 </script>
@@ -119,12 +103,15 @@ export default {
 	border: 1px solid #2c3e50;
 	border-radius: 4px;
 	box-sizing: border-box;
+	max-width: 80%;
+	max-height: 90vh;
+	overflow: auto;
 }
 
 .popup-container {
 	height: 100%;
 	box-sizing: border-box;
-	padding: 16px;
+	padding: 43px 16px 16px 16px;
 	background: #ffffff;
 	position: relative;
 }
@@ -143,6 +130,10 @@ p {
 	padding: 12px;
 	column-gap: 8px;
 	flex-wrap: wrap;
+}
+
+.sticker-box {
+	margin-top: 12px;
 }
 
 .sticker-set {

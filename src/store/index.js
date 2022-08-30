@@ -4,7 +4,8 @@ export default createStore({
 	state: {
 		isOpenStickerSetModal: false,
 		isOpenStickerSet: false,
-		teamAlbumData: []
+		teamAlbumData: [],
+		stickerSetCount: [0, 1, 2],
 	},
 	mutations: {},
 	actions: {},

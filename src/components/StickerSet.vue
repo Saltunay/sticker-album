@@ -42,6 +42,7 @@ export default {
 			this.$store.state.isOpenStickerSet = false
 		},
 		pasteYourAlbum: function () {
+			this.$store.state.isOpenStickerSet = false
 			this.$router.push("/team-album")
 		}
 	},
