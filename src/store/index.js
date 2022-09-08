@@ -6,6 +6,7 @@ export default createStore({
 		isOpenStickerSet: false,
 		teamAlbumData: [],
 		stickerSetCount: [0, 1, 2],
+		lorem: []
 	},
 	mutations: {},
 	actions: {},
